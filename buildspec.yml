@@ -5,7 +5,7 @@ env:
     IMAGE_REPO_URL: "809695185788.dkr.ecr.ap-southeast-2.amazonaws.com/"
     IMAGE_PLATFORM_NAME: node:16
     IMAGE_APP_NAME: "nestjs-poc-miraen"
-    IMAGE_VERSION: 1.0.0
+    IMAGE_VERSION: 1.0.0-dev
     PROFILE: $PROFILE
     PROJ_NAME: $PROJ_NAME
     COMPANY_NAME: $COMPANY_NAME
