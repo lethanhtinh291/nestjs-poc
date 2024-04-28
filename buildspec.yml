@@ -17,7 +17,7 @@ phases:
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
-      - aws ecr get-login-password | docker login --username AWS --password-stdin 809695185788.dkr.ecr.ap-southeast-2.amazonaws.com/poc-miraen
+      - aws ecr get-login-password --region ap-southeast-2 | docker login --username AWS --password-stdin 809695185788.dkr.ecr.ap-southeast-2.amazonaws.com
 #      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
       #- docker pull $IMAGE_REPO_URL$IMAGE_PLATFORM_NAME
       - docker pull node:16
