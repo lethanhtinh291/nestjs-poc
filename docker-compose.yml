@@ -1,0 +1,32 @@
+version: "3.7"
+services:
+  miraen-redis:
+    container_name: miraen-redis
+    image: redis:6.0.8
+    volumes:
+      - /home/ec2-user/codedeploy/_data/redis:/data
+      - /home/ec2-user/codedeploy/redis.conf:/usr/local/etc/redis/redis.conf
+    command: redis-server /usr/local/etc/redis/redis.conf
+    ports:
+      - 6379:6379
+    hostname: miraen-redis
+    networks:
+      - miraen
+  miraen-api:
+    image: 502846858339.dkr.ecr.ap-northeast-2.amazonaws.com/brickmate-commerce-backend-dev:latest
+    container_name: miraen-api
+    restart: always
+    command: node dist/src/main
+    ports:
+      - 80:3000
+      - 443:3000
+      - 3000:3000
+    depends_on:
+      - miraen-redis
+    init: true
+    volumes:
+      - /home/ec2-user/codedeploy/.env:/app/.env
+    networks:
+      - miraen
+networks:
+  miraen:

@@ -1,0 +1,47 @@
+version: 0.0
+os: linux
+files:
+  - source: .env
+    destination: /home/ec2-user/codedeploy
+  - source: api_down.sh
+    destination: /home/ec2-user/codedeploy
+  - source: api_deploy.sh
+    destination: /home/ec2-user/codedeploy
+  - source: docker-compose.yml
+    destination: /home/ec2-user/codedeploy
+  - source: redis.conf
+    destination: /home/ec2-user/codedeploy
+  - source: appspec.yml
+    destination: /home/ec2-user/codedeploy
+file_exists_behavior: OVERWRITE
+permissions:
+  - object: /home/ec2-user/codedeploy/.env
+    owner: ec2-user
+    group: ec2-user
+  - object: /home/ec2-user/codedeploy/api_down.sh
+    owner: ec2-user
+    group: ec2-user
+    mode: 755
+  - object: /home/ec2-user/codedeploy/api_deploy.sh
+    owner: ec2-user
+    group: ec2-user
+    mode: 755
+  - object: /home/ec2-user/codedeploy/docker-compose.yml
+    owner: ec2-user
+    group: ec2-user
+    mode: 755
+  - object: /home/ec2-user/codedeploy/redis.conf
+    owner: ec2-user
+    group: ec2-user
+    mode: 755
+  - object: /home/ec2-user/codedeploy/appspec.yml
+    owner: ec2-user
+    group: ec2-user
+    mode: 755
+hooks:
+  ApplicationStop:
+    - location: /api_down.sh
+      runas: ec2-user
+  ApplicationStart:
+    - location: /api_deploy.sh
+      runas: ec2-user
