@@ -30,7 +30,7 @@ phases:
       - echo ========================================
       - echo BUILD STARTED ON `date`
       - echo Building the Docker image...
-      - docker build -t $IMAGE_REPO_URL$IMAGE_APP_NAME:$IMAGE_VERSION --target production .
+      - docker build -t $IMAGE_REPO_URL$IMAGE_APP_NAME:$IMAGE_VERSION .
   post_build:
     commands:
       - echo ========================================
