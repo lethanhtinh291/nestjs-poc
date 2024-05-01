@@ -40,8 +40,8 @@ permissions:
     mode: 755
 hooks:
   ApplicationStop:
-    - location: /api_down.sh
+    - location: /stop_server.sh
       runas: ec2-user
   ApplicationStart:
-    - location: /api_deploy.sh
+    - location: /start_server.sh
       runas: ec2-user
