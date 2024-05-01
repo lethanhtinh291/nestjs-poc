@@ -4,7 +4,6 @@ env:
     IMAGE_REPO_URL: "809695185788.dkr.ecr.ap-southeast-2.amazonaws.com/"
     IMAGE_PLATFORM_NAME: node:16.15.1
     IMAGE_APP_NAME: "poc-miraen"
-    IMAGE_VERSION: $(date +%Y%m%d%H%M%S)
 
     #    IMAGE_REPO_URL: "502846858339.dkr.ecr.ap-northeast-2.amazonaws.com/"
 #    IMAGE_REPO_URL: "809695185788.dkr.ecr.ap-southeast-2.amazonaws.com/"
@@ -28,6 +27,7 @@ phases:
       - echo ========================================
       - echo BUILD STARTED ON `date`
       - echo Building the Docker image...
+      - export IMAGE_VERSION=$(date +%Y%m%d%H%M%S)
       - docker build -t $IMAGE_REPO_URL$IMAGE_APP_NAME:$IMAGE_VERSION .
   post_build:
     commands:
