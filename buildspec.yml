@@ -3,20 +3,8 @@ env:
   variables:
     IMAGE_REPO_URL: "809695185788.dkr.ecr.ap-southeast-2.amazonaws.com/"
     IMAGE_PLATFORM_NAME: node:16.15.1
-    IMAGE_APP_NAME: "poc-miraen"
-
-    #    IMAGE_REPO_URL: "502846858339.dkr.ecr.ap-northeast-2.amazonaws.com/"
-#    IMAGE_REPO_URL: "809695185788.dkr.ecr.ap-southeast-2.amazonaws.com/"
-#    IMAGE_PLATFORM_NAME: node:16
-#    IMAGE_APP_NAME: "poc-miraen"
-#    IMAGE_VERSION: 1.0.0-dev
-#    PROFILE: $PROFILE
-#    PROJ_NAME: $PROJ_NAME
-#    COMPANY_NAME: $COMPANY_NAME
-#    AWS_ACCOUNT_ID: $AWS_ACCOUNT_ID
-#    AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
-#    AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
-#    AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
+    IMAGE_APP_NAME: "api-poc-miraen"
+    IMAGE_VERSION: $NODE_ENV + "-" + $CODEBUILD_RESOLVED_SOURCE_VERSION
 phases:
   pre_build:
     commands:
@@ -27,7 +15,6 @@ phases:
       - echo ========================================
       - echo BUILD STARTED ON `date`
       - echo Building the Docker image...
-      - export IMAGE_VERSION=$(date +%Y%m%d%H%M%S)
       - docker build -t $IMAGE_REPO_URL$IMAGE_APP_NAME:$IMAGE_VERSION .
   post_build:
     commands:
@@ -42,11 +29,7 @@ cache:
     - './node_modules/**/*'
 artifacts:
   files:
-    - 'imagedefinitions.json'
+    #- './**/*'
     - 'appspec.yml'
-    - '.env'
-    - 'api_down.sh'
-    - 'api_deploy.sh'
-    - 'docker-compose.yml'
-    - 'redis.conf'
-    - 'yarn.lock'
+    - 'stop_server.sh'
+    - 'start_server.sh'
