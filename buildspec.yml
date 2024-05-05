@@ -16,6 +16,7 @@ phases:
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
+      - echo $IMAGE_REPO_URL
       - aws ecr get-login-password | docker login --username AWS --password-stdin $IMAGE_REPO_URL
       - cp appspec.yml ./appspec.yml
       - cp start_server.sh ./start_server.sh
