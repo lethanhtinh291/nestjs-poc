@@ -1,7 +1,7 @@
 version: 0.2
 env:
   variables:
-    IMAGE_REPO_URL: $IMAGE_REPO_URL "809695185788.dkr.ecr.ap-southeast-2.amazonaws.com/"
+    IMAGE_REPO_URL: $IMAGE_REPO_URL
     IMAGE_PLATFORM_NAME: node:16.15.1
     IMAGE_APP_NAME: $IMAGE_APP_NAME
     IMAGE_VERSION: $IMAGE_VERSION
