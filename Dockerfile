@@ -22,11 +22,11 @@ FROM node:16-alpine
 # Copy the bundled code from the build stage to the production image
 COPY --chown=node:node --from=build /usr/src/app/node_modules ./node_modules
 COPY --chown=node:node --from=build /usr/src/app/dist ./dist
-COPY --chown=node:node --from=build /usr/src/app/start_server.sh .
-COPY --chown=node:node --from=build /usr/src/app/stop_server.sh .
-COPY --chown=node:node --from=build /usr/src/app/appspec.yml .
-COPY --chown=node:node --from=build /usr/src/app/buildspec.yml .
-COPY --chown=node:node --from=build /usr/src/app/.env .
+COPY --chown=node:node --from=build /usr/src/app/start_server.sh ./
+COPY --chown=node:node --from=build /usr/src/app/stop_server.sh ./
+COPY --chown=node:node --from=build /usr/src/app/appspec.yml ./
+COPY --chown=node:node --from=build /usr/src/app/buildspec.yml ./
+COPY --chown=node:node --from=build /usr/src/app/.env ./
 
 
 # Start the server using the production build
