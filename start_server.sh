@@ -1,11 +1,12 @@
 #!/bin/sh
 PROFILE=@PROFILE@
-PROJ_NAME=@PROJ_NAME@
 IMAGE_VERSION=@IMAGE_VERSION@
-AWS_ACCOUNT_ID=@AWS_ACCOUNT_ID@
-AWS_DEFAULT_REGION=@AWS_DEFAULT_REGION@
+IMAGE_REPO_URL="809695185788.dkr.ecr.ap-southeast-2.amazonaws.com/"
+IMAGE_VERSION="20240505143755"
+IMAGE_APP_NAME="poc-miraen"
+AWS_DEFAULT_REGION="ap-southeast-2"
+I_PORT=3000
 
-REPOSITORY_URL_TAG=${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/poc-miraen/api-poc-miraen:${PROFILE}_${IMAGE_VERSION}
 
 if [ "$PROFILE" = "dev" ]; then
     I_PORT=3000
@@ -13,8 +14,9 @@ elif [ "$PROFILE" = "prd" ]; then
     I_PORT=3000
 fi
 
+echo ${IMAGE_REPO_URL}${IMAGE_APP_NAME}:${IMAGE_VERSION}
 sudo docker run \
 -d \
--p ${I_PORT}:3000 \
---name ${PROJ_NAME} \
-${REPOSITORY_URL_TAG}
+-p${I_PORT}:3000 \
+--name ${IMAGE_APP_NAME} \
+${IMAGE_REPO_URL}${IMAGE_APP_NAME}:${IMAGE_VERSION} \
