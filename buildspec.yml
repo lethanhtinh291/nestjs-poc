@@ -12,7 +12,7 @@ phases:
       - echo $IMAGE_REPO_URL
       - echo $IMAGE_APP_NAME
       - echo Logging in to Amazon ECR...
-      - aws ecr get-login-password | docker login --username AWS --password-stdin $IMAGE_REPO_URL
+      - aws ecr get-login-password | docker login --username AWS --password-stdin ${IMAGE_REPO_URL}
       - aws s3 cp s3://poc-miraen/poc-miraen/env .env
       - aws s3 cp s3://poc-miraen/poc-miraen/appspec.yml .
       - aws s3 cp s3://poc-miraen/poc-miraen/start_server.sh .
