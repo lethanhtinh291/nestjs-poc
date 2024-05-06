@@ -10,9 +10,6 @@ phases:
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password | docker login --username AWS --password-stdin $IMAGE_REPO_URL
       - aws s3 cp s3://poc-miraen/poc-miraen/.env .
-      - aws s3 cp s3://poc-miraen/poc-miraen/appspec.yml .
-      - aws s3 cp s3://poc-miraen/poc-miraen/start_server.sh .
-      - aws s3 cp s3://poc-miraen/poc-miraen/stop_server.sh .
       - export IMAGE_VERSION=$(date +%Y%m%d%H%M%S)
       - echo $IMAGE_VERSION
       - sed -i 's/@PROJ_NAME@/'${PROJ_NAME}'/' ./appspec.yml
