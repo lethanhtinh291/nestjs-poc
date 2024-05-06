@@ -4,6 +4,9 @@ env:
     IMAGE_REPO_URL: "809695185788.dkr.ecr.ap-southeast-2.amazonaws.com/"
     IMAGE_PLATFORM_NAME: node:16.15.1
     IMAGE_APP_NAME: "poc-miraen"
+    AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
+    AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+    AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
 phases:
   pre_build:
     commands:
