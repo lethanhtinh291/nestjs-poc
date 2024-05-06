@@ -33,7 +33,7 @@ phases:
       - echo ========================================
       - echo BUILD COMPLETED ON `date`
       - echo Pushing the Docker images...
-      - docker push ${IMAGE_REPO_URL}${IMAGE_APP_NAME}:$IMAGE_VERSION
+      - docker push ${IMAGE_REPO_URL}/${IMAGE_APP_NAME}:$IMAGE_VERSION
       - echo Writing image definitions file...
       - printf '[{"name":"%s:%s","imageUri":"%s"}]' ${IMAGE_APP_NAME} $IMAGE_VERSION ${IMAGE_REPO_NAME}:$IMAGE_VERSION > imagedefinitions.json
 cache:
