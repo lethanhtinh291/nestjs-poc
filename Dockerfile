@@ -4,6 +4,7 @@ WORKDIR /usr/src/app
 
 COPY --chown=node:node package.json ./
 COPY --chown=node:node yarn.lock ./
+COPY --chown=node:node .env ./
 
 RUN yarn install
 COPY --chown=node:node . .
