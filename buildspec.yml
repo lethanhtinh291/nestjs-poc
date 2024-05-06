@@ -24,7 +24,7 @@ phases:
       - aws ecr get-login-password | docker login --username AWS --password-stdin $IMAGE_REPO_URL
       - export IMAGE_VERSION=$(date +%Y%m%d%H%M%S)
       - echo $IMAGE_VERSION
-      - aws s3 cp s3://poc-miraen/poc-miraen/.env ./
+      - aws s3 cp s3://poc-miraen/poc-miraen/env .env
       - sed -i 's/@PROJ_NAME@/'${PROJ_NAME}'/' ./appspec.yml
       - sed -i 's/@PROFILE@/'${PROFILE}'/; s/@PROJ_NAME@/'${PROJ_NAME}'/; s/@TAG_VERSION@/'${TAG_VERSION}'/; s/@AWS_ACCOUNT_ID@/'${AWS_ACCOUNT_ID}'/; s/@AWS_DEFAULT_REGION@/'${AWS_DEFAULT_REGION}'/; s/@COMPANY_NAME@/'${COMPANY_NAME}'/; s/@IMAGE_VERSION@/'${IMAGE_VERSION}'/' ./start_server.sh
       - sed -i 's/@PROFILE@/'${PROFILE}'/; s/@PROJ_NAME@/'${PROJ_NAME}'/; s/@TAG_VERSION@/'${TAG_VERSION}'/; s/@AWS_ACCOUNT_ID@/'${AWS_ACCOUNT_ID}'/; s/@AWS_DEFAULT_REGION@/'${AWS_DEFAULT_REGION}'/; s/@COMPANY_NAME@/'${COMPANY_NAME}'/; s/@AWS_ACCESS_KEY_ID@/'${AWS_ACCESS_KEY_ID}'/; s/@AWS_SECRET_ACCESS_KEY@/'${AWS_SECRET_ACCESS_KEY}'/; s/@IMAGE_VERSION@/'${IMAGE_VERSION}'/' ./stop_server.sh
