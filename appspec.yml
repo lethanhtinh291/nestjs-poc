@@ -12,11 +12,11 @@ permissions:
     mode: 755
 hooks:
   AfterInstall:
-    - location: /stop_server.sh
+    - location: ./stop_server.sh
       timeout: 180
       runas: ec2-user
 
   ApplicationStart:
-    - location: /start_server.sh
+    - location: ./start_server.sh
       timeout: 180
       runas: ec2-user
