@@ -5,15 +5,15 @@ env:
     IMAGE_PLATFORM_NAME: node:16.15.1
     IMAGE_APP_NAME: $IMAGE_APP_NAME
     AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
-    AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
-    AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
 phases:
   pre_build:
     commands:
-      - echo Logging in to Amazon ECR...
-      - aws ecr get-login-password | docker login --username AWS --password-stdin ${IMAGE_REPO_URL}
       - export IMAGE_VERSION=$(date +%Y%m%d%H%M%S)
       - echo $IMAGE_VERSION
+      - echo $IMAGE_REPO_URL
+      - echo $IMAGE_APP_NAME
+      - echo Logging in to Amazon ECR...
+      - aws ecr get-login-password | docker login --username AWS --password-stdin ${IMAGE_REPO_URL}
       - aws s3 cp s3://poc-miraen/poc-miraen/env .env
       - aws s3 cp s3://poc-miraen/poc-miraen/appspec.yml .
       - aws s3 cp s3://poc-miraen/poc-miraen/start_server.sh .
@@ -35,7 +35,7 @@ phases:
       - echo Pushing the Docker images...
       - docker push ${IMAGE_REPO_URL}/${IMAGE_APP_NAME}:$IMAGE_VERSION
       - echo Writing image definitions file...
-      - printf '[{"name":"%s:%s","imageUri":"%s"}]' ${IMAGE_APP_NAME} ${IMAGE_VERSION} ${IMAGE_APP_NAME}:$IMAGE_VERSION > imagedefinitions.json
+      - printf '[{"name":"%s:%s","imageUri":"%s"}]' ${IMAGE_APP_NAME} $IMAGE_VERSION ${IMAGE_REPO_NAME}:$IMAGE_VERSION > imagedefinitions.json
 cache:
   paths:
     - './node_modules/**/*'
