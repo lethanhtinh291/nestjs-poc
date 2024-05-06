@@ -19,9 +19,8 @@ phases:
       - aws s3 cp s3://poc-miraen/poc-miraen/start_server.sh .
       - aws s3 cp s3://poc-miraen/poc-miraen/stop_server.sh .
       - sed -i 's/@PROJ_NAME@/'${PROJ_NAME}'/' ./appspec.yml
-      - sed -i 's/@PROFILE@/'${PROFILE}'/; s/@PROJ_NAME@/'${PROJ_NAME}'/; s/@TAG_VERSION@/'${TAG_VERSION}'/; s/@AWS_ACCOUNT_ID@/'${AWS_ACCOUNT_ID}'/; s/@AWS_DEFAULT_REGION@/'${AWS_DEFAULT_REGION}'/; s/@COMPANY_NAME@/'${COMPANY_NAME}'/; s/@IMAGE_VERSION@/'${IMAGE_VERSION}'/; s/@IMAGE_REPO_URL@/'${IMAGE_REPO_URL}'/; s/@IMAGE_APP_NAME@/'${IMAGE_APP_NAME}'/'; s/@AWS_DEFAULT_REGION@/'${AWS_DEFAULT_REGION}'/' ./start_server.sh
-      - sed -i 's/@PROFILE@/'${PROFILE}'/; s/@PROJ_NAME@/'${PROJ_NAME}'/; s/@TAG_VERSION@/'${TAG_VERSION}'/; s/@AWS_ACCOUNT_ID@/'${AWS_ACCOUNT_ID}'/; s/@AWS_DEFAULT_REGION@/'${AWS_DEFAULT_REGION}'/; s/@COMPANY_NAME@/'${COMPANY_NAME}'/; s/@AWS_ACCESS_KEY_ID@/'${AWS_ACCESS_KEY_ID}'/; s/@AWS_SECRET_ACCESS_KEY@/'${AWS_SECRET_ACCESS_KEY}'/; s/@IMAGE_VERSION@/'${IMAGE_VERSION}'/; s/@IMAGE_REPO_URL@/'${IMAGE_REPO_URL}'/; s/@IMAGE_APP_NAME@/'${IMAGE_APP_NAME}'/'; s/@AWS_DEFAULT_REGION@/'${AWS_DEFAULT_REGION}'/' ./stop_server.sh
-
+      - sed -i 's/@PROFILE@/'${PROFILE}'/; s/@PROJ_NAME@/'${PROJ_NAME}'/; s/@TAG_VERSION@/'${TAG_VERSION}'/; s/@AWS_ACCOUNT_ID@/'${AWS_ACCOUNT_ID}'/; s/@AWS_DEFAULT_REGION@/'${AWS_DEFAULT_REGION}'/; s/@COMPANY_NAME@/'${COMPANY_NAME}'/; s/@IMAGE_VERSION@/'${IMAGE_VERSION}'/; s/@IMAGE_REPO_URL@/'${IMAGE_REPO_URL}'/; s/@IMAGE_APP_NAME@/'${IMAGE_APP_NAME}'/; s/@AWS_DEFAULT_REGION@/'${AWS_DEFAULT_REGION}'/' ./start_server.sh
+      - sed -i 's/@PROFILE@/'${PROFILE}'/; s/@PROJ_NAME@/'${PROJ_NAME}'/; s/@TAG_VERSION@/'${TAG_VERSION}'/; s/@AWS_ACCOUNT_ID@/'${AWS_ACCOUNT_ID}'/; s/@AWS_DEFAULT_REGION@/'${AWS_DEFAULT_REGION}'/; s/@COMPANY_NAME@/'${COMPANY_NAME}'/; s/@AWS_ACCESS_KEY_ID@/'${AWS_ACCESS_KEY_ID}'/; s/@AWS_SECRET_ACCESS_KEY@/'${AWS_SECRET_ACCESS_KEY}'/; s/@IMAGE_VERSION@/'${IMAGE_VERSION}'/; s/@IMAGE_REPO_URL@/'${IMAGE_REPO_URL}'/; s/@IMAGE_APP_NAME@/'${IMAGE_APP_NAME}'/; s/@AWS_DEFAULT_REGION@/'${AWS_DEFAULT_REGION}'/' ./stop_server.sh
   build:
     commands:
       - echo ========================================
