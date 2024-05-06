@@ -26,6 +26,7 @@ COPY --chown=node:node --from=build /usr/src/app/start_server.sh .
 COPY --chown=node:node --from=build /usr/src/app/stop_server.sh .
 COPY --chown=node:node --from=build /usr/src/app/appspec.yml .
 COPY --chown=node:node --from=build /usr/src/app/buildspec.yml .
+COPY --chown=node:node --from=build /usr/src/app/.env .
 
 
 # Start the server using the production build
